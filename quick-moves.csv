@@ -1,0 +1,60 @@
+Name,Type,Damage,Energy Gain,DPS,EPS,Cooldown
+Tackle,normal,5,5,10.00,10.00,0.50
+Acid,poison,9,8,11.25,10.00,0.80
+Bite,dark,6,4,12.00,8.00,0.50
+Bubble,water,12,14,10.00,11.67,1.20
+Bug Bite,bug,5,6,10.00,12.00,0.50
+Bullet Punch,steel,9,10,10.00,11.11,0.90
+Confusion,psychic,20,15,12.50,9.38,1.60
+Dragon Breath,dragon,6,4,12.00,8.00,0.50
+Ember,fire,10,10,10.00,10.00,1.00
+Feint Attack,dark,10,9,11.11,10.00,0.90
+Fire Fang,fire,11,8,12.22,8.89,0.90
+Fury Cutter,bug,3,6,7.50,15.00,0.40
+Frost Breath,ice,10,8,11.11,8.89,0.90
+Karate Chop,fighting,8,10,10.00,12.50,0.80
+Low Kick,fighting,6,6,10.00,10.00,0.60
+Lick,ghost,5,6,10.00,12.00,0.50
+Metal Claw,steel,8,7,11.43,10.00,0.70
+Mud Shot,ground,5,7,8.33,11.67,0.60
+Mud Slap,ground,15,12,10.71,8.57,1.40
+Peck,flying,10,10,10.00,10.00,1.00
+Poison Sting,poison,5,7,8.33,11.67,0.60
+Pound,normal,7,6,11.67,10.00,0.60
+Psycho Cut,psychic,5,8,8.33,13.33,0.60
+Quick Attack,normal,8,10,10.00,12.50,0.80
+Razor Leaf,grass,13,7,13.00,7.00,1.00
+Rock Smash,fighting,15,10,11.54,7.69,1.30
+Rock Throw,rock,12,7,13.33,7.78,0.90
+Scratch,normal,6,4,12.00,8.00,0.50
+Spark,electric,6,9,8.57,12.86,0.70
+Steel Wing,steel,11,6,13.75,7.50,0.80
+Sucker Punch,dark,7,8,10.00,11.43,0.70
+Thunder Shock,electric,5,8,8.33,13.33,0.60
+Vine Whip,grass,7,6,11.67,10.00,0.60
+Water Gun,water,5,5,10.00,10.00,0.50
+Wing Attack,flying,8,9,10.00,11.25,0.80
+Zen Headbutt,psychic,12,10,10.91,9.09,1.10
+Poison Jab,poison,10,7,12.50,8.75,0.80
+Ice Shard,ice,12,12,10.00,10.00,1.20
+Shadow Claw,ghost,9,6,12.86,8.57,0.70
+Splash,water,0,20,0.00,0.00,1.73
+Cut,normal,5,5,10.00,10.00,0.50
+Transform,normal,0,0,0.00,0.00,2.23
+Counter,fighting,12,8,13.33,8.89,0.90
+Powder Snow,ice,6,15,6.00,15.00,1.00
+Charge Beam,electric,8,15,7.27,13.64,1.10
+Volt Switch,electric,20,25,8.70,10.87,2.30
+Dragon Tail,dragon,15,9,13.64,8.18,1.10
+Air Slash,flying,14,10,11.67,8.33,1.20
+Infestation,bug,10,14,9.09,12.73,1.10
+Struggle Bug,bug,15,15,10.00,10.00,1.50
+Astonish,ghost,8,14,7.27,12.73,1.10
+Hex,ghost,10,15,8.33,12.50,1.20
+Iron Tail,steel,15,7,13.64,6.36,1.10
+Fire Spin,fire,14,10,12.73,9.09,1.10
+Water Gun (Blastoise),water,10,6,10.00,6.00,1.00
+Bullet Seed,grass,8,14,7.27,12.73,1.10
+Extrasensory,psychic,12,12,10.91,10.91,1.10
+Snarl,dark,12,12,10.91,10.91,1.10
+Hidden Power,normal,15,15,10.00,10.00,1.50

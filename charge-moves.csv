@@ -1,0 +1,117 @@
+Name,Bars,Type,Damage,Cooldown,Activation
+Aerial Ace,3,flying,55,2.40,1.90
+Air Cutter,2,flying,60,2.70,1.80
+Ancient Power,3,rock,70,3.50,2.85
+Aqua Jet,3,water,45,2.60,1.70
+Aqua Tail,3,water,50,1.90,1.20
+Blizzard,1,ice,130,3.10,1.50
+Body Slam,3,normal,50,1.90,1.20
+Bone Club,3,ground,40,1.60,1.00
+Brick Break,3,fighting,40,1.60,0.80
+Bubble Beam,3,water,45,1.90,1.45
+Bug Buzz,2,bug,90,3.70,2.00
+Bulldoze,2,ground,80,3.50,2.60
+Cross Chop,2,fighting,50,1.50,0.80
+Cross Poison,3,poison,40,1.50,0.90
+Dark Pulse,2,dark,80,3.00,1.40
+Dazzling Gleam,2,fairy,100,3.50,2.10
+Dig,2,ground,100,4.70,2.80
+Disarming Voice,3,fairy,70,3.90,3.20
+Discharge,3,electric,65,2.50,1.70
+Dragon Claw,3,dragon,50,1.70,1.10
+Dragon Pulse,2,dragon,90,3.60,2.15
+Draining Kiss,2,fairy,60,2.60,1.00
+Drill Peck,3,flying,60,2.30,1.70
+Earthquake,1,ground,120,3.60,2.70
+Fire Blast,1,fire,140,4.20,3.10
+Fire Punch,3,fire,55,2.20,1.50
+Flame Burst,2,fire,70,2.60,1.00
+Flame Wheel,2,fire,60,2.70,2.10
+Flamethrower,2,fire,70,2.20,1.50
+Flash Cannon,1,steel,100,2.70,1.60
+Gunk Shot,1,poison,130,3.10,1.70
+Heat Wave,1,fire,95,3.00,1.70
+Horn Attack,3,normal,40,1.85,0.80
+Hydro Pump,1,water,130,3.30,0.90
+Hyper Beam,1,normal,150,3.80,3.30
+Hyper Fang,2,normal,80,2.50,1.50
+Ice Beam,2,ice,90,3.30,1.30
+Ice Punch,3,ice,50,1.90,1.30
+Icy Wind,3,ice,60,3.30,2.00
+Iron Head,2,steel,60,1.90,1.30
+Low Sweep,3,fighting,40,1.90,1.30
+Magnet Bomb,3,steel,70,2.80,2.20
+Megahorn,1,bug,90,2.20,1.70
+Moonblast,1,fairy,130,3.90,2.20
+Mud Bomb,3,ground,55,2.30,1.70
+Night Slash,3,dark,50,2.20,1.30
+Petal Blizzard,1,grass,110,2.60,1.70
+Play Rough,2,fairy,90,2.90,1.30
+Poison Fang,3,poison,35,1.70,0.90
+Power Gem,2,rock,80,2.90,1.95
+Power Whip,2,grass,90,2.60,1.25
+Psybeam,2,psychic,70,3.20,1.30
+Psychic,1,psychic,100,2.80,1.30
+Psyshock,3,psychic,65,2.70,2.00
+Rock Slide,2,rock,80,2.70,1.50
+Rock Tomb,2,rock,70,3.20,2.25
+Scald,2,water,80,3.70,1.30
+Seed Bomb,3,grass,55,2.10,1.20
+Shadow Ball,2,ghost,100,3.00,2.40
+Signal Beam,2,bug,75,2.90,1.80
+Sludge,3,poison,50,2.10,1.20
+Sludge Bomb,2,poison,80,2.30,1.10
+Sludge Wave,1,poison,110,3.20,2.00
+Solar Beam,1,grass,180,4.90,2.70
+Stomp,2,normal,55,1.70,1.10
+Stone Edge,1,rock,100,2.30,0.70
+Struggle,3,normal,35,2.20,1.20
+Submission,2,fighting,60,2.20,1.80
+Swift,2,normal,60,2.80,2.00
+Thunder,1,electric,100,2.40,1.20
+Thunder Punch,3,electric,45,1.80,1.70
+Thunderbolt,2,electric,80,2.50,1.80
+Twister,3,dragon,45,2.80,0.95
+Vice Grip,3,normal,35,1.90,1.10
+Water Pulse,2,water,70,3.20,2.20
+Wrap,3,normal,60,2.90,2.05
+X-Scissor,3,bug,45,1.60,1.20
+Flame Charge,3,fire,70,3.80,2.90
+Hurricane,1,flying,110,2.70,1.20
+Drill Run,2,ground,80,2.80,1.70
+Brine,2,water,60,2.30,1.50
+Ominous Wind,3,ghost,50,2.30,1.85
+Leaf Blade,3,grass,70,2.40,1.25
+Psystrike,2,psychic,100,4.40,3.00
+Close Combat,1,fighting,100,2.30,1.00
+Dynamic Punch,2,fighting,90,2.70,1.20
+Focus Blast,1,fighting,140,3.50,3.00
+Aurora Beam,2,ice,80,3.55,3.35
+Wild Charge,2,electric,90,2.60,1.70
+Rest,3,normal,50,1.90,1.50
+Scald (Blastoise),1,water,50,4.70,2.50
+Hydro Pump (Blastoise),1,water,90,4.50,2.20
+Wrap (Green/Pink),3,normal,25,2.90,2.05
+Zap Cannon,1,electric,140,3.70,3.00
+Avalanche,2,ice,90,2.70,1.70
+Heart Stamp,3,psychic,40,1.90,1.10
+Brave Bird,1,flying,90,2.00,1.00
+Sky Attack,2,flying,70,2.00,1.50
+Sand Tomb,2,ground,80,4.00,1.70
+Rock Blast,3,rock,50,2.10,1.60
+Silver Wind,3,bug,70,3.70,1.70
+Night Shade,2,ghost,60,2.60,2.10
+Gyro Ball,2,steel,80,3.30,3.00
+Heavy Slam,2,steel,70,2.10,1.50
+Overheat,1,fire,160,4.00,2.60
+Grass Knot,2,grass,90,2.60,1.70
+Energy Ball,2,grass,90,3.90,3.00
+Future Sight,1,psychic,120,2.70,1.40
+Mega Drain,2,grass,25,2.60,0.95
+Mirror Coat,2,psychic,60,2.60,2.30
+Outrage,2,dragon,110,3.90,2.50
+Crunch,3,dark,70,3.20,1.30
+Foul Play,2,dark,70,2.00,1.70
+Shadow Sneak,3,ghost,50,2.90,2.20
+Shadow Punch,3,ghost,40,1.70,1.30
+Parabolic Charge,2,electric,25,2.80,1.20
