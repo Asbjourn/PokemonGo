@@ -47,9 +47,6 @@ attributeNum = Set([
     "bars"
 ])
 
-
-
-
 def parsePokemon(attributes, poke):
     global pokemon
     current = {}
