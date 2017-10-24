@@ -172,7 +172,7 @@ def damage(move,
     stab = 1.0
     if move["type"] in aPokemon["types"]:
         stab = 1.2
-    effective = 1
+    effective = 1.0
     for dType in dPokemon["types"]:
         effective *= effectivenessMap[aTE[move["type"]][dType]]
     return math.floor(0.5 * power * attack / defense * stab * effective) + 1
@@ -195,27 +195,31 @@ def simulateGymAttack():
     aPokemon = pokemon[attack_pokemon]
     aQuick = quickMoves[attack_quick]
     aCharge = chargeMoves[attack_charge]
-    aDamageCounter = 0
-    aEnergy = 0
-    aCooldown = 0
+    aDamageCounter = 0.0
+    aEnergy = 0.0
+    aCooldown = 0.0
 
     # Defend Pokemon
     dPokemon = pokemon[defense_pokemon]
     dQuick = quickMoves[defense_quick]
     dCharge = chargeMoves[defense_charge]
-    dDamageCounter = 0
-    dEnergy = 0
-    dCooldown = 0
+    dDamageCounter = 0.0
+    dEnergy = 0.0
+    dCooldown = 0.0
     dStamina = 2 * math.floor((dPokemon["stamina"] + defense_ivs["stamina"]) * defense_cpm)
     # Constants
-    elapsed = 0
+    elapsed = 0.0
     snapshots = []
 
     while elapsed <= time and dDamageCounter < aPokemon["stamina"] and aDamageCounter < dStamina:
         aAttack = None
-        aDamage = 0
+        aDamage = 0.0
+        aStab = 1.0
+        aEffectiveness = 1.0
         dAttack = None
-        dDamage = 0
+        dDamage = 0.0
+        dStab = 1.0
+        dEffectiveness = 1.0
         
         # Attack Pokemon
         aCooldown -= delta
@@ -230,7 +234,11 @@ def simulateGymAttack():
             aDamageCounter += aDamage
             aEnergy -= 100 / aCharge["bars"]
             aCooldown = aCharge["cooldown"]
-            aAttack = aCharge["name"]
+            aAttack = aCharge
+            if aAttack["type"] in aPokemon["types"]:
+                aStab = 1.2
+            for dType in dPokemon["types"]:
+                aEffectiveness *= effectivenessMap[aTE[aAttack["type"]][dType]]
         else:
             aDamage = damage(aQuick,
                              attack_pokemon, attack_ivs, attack_cpm,
@@ -238,7 +246,11 @@ def simulateGymAttack():
             aDamageCounter += aDamage
             aEnergy += aQuick["energy gain"]
             aCooldown = aQuick["cooldown"]
-            aAttack = aQuick["name"]
+            aAttack = aQuick
+            if aAttack["type"] in aPokemon["types"]:
+                aStab = 1.2
+            for dType in dPokemon["types"]:
+                aEffectiveness *= effectivenessMap[aTE[aAttack["type"]][dType]]
 
         # Defense Pokemon
         dCooldown -= delta
@@ -251,7 +263,11 @@ def simulateGymAttack():
                              attack_pokemon, attack_ivs, attack_cpm)
             dDamageCounter += dDamage
             dEnergy += dQuick["energy gain"]
-            dAttack = dQuick["name"]
+            dAttack = dQuick
+            if dAttack["type"] in dPokemon["types"]:
+                dStab = 1.2
+            for aType in aPokemon["types"]:
+                dEffectiveness *= effectivenessMap[aTE[dAttack["type"]][aType]]
         elif dEnergy > 100 / dCharge["bars"]:
             if random.uniform(0.0, 1.0) > 0.5:
                 dDamage = damage(dCharge,
@@ -260,7 +276,11 @@ def simulateGymAttack():
                 dDamageCounter += dDamage
                 dEnergy -= 100 / dCharge["bars"]
                 dCooldown = dCharge["cooldown"] + random.uniform(1.5, 2.5)
-                dAttack = dCharge["name"]
+                dAttack = dCharge
+                if dAttack["type"] in dPokemon["types"]:
+                    dStab = 1.2
+                for aType in aPokemon["types"]:
+                    dEffectiveness *= effectivenessMap[aTE[dAttack["type"]][aType]]
             else:
                 dDamage = damage(dQuick,
                                  defense_pokemon, defense_ivs, defense_cpm,
@@ -268,7 +288,11 @@ def simulateGymAttack():
                 dDamageCounter += dDamage
                 dEnergy += dQuick["energy gain"]
                 dCooldown = dQuick["cooldown"] + random.uniform(1.5, 2.5)
-                dAttack = dQuick["name"]
+                dAttack = dQuick
+                if dAttack["type"] in dPokemon["types"]:
+                    dStab = 1.2
+                for aType in aPokemon["types"]:
+                    dEffectiveness *= effectivenessMap[aTE[dAttack["type"]][aType]]
         else:
             dDamage = damage(dQuick,
                              defense_pokemon, defense_ivs, defense_cpm,
@@ -276,7 +300,11 @@ def simulateGymAttack():
             dDamageCounter += dDamage
             dEnergy += dQuick["energy gain"]
             dCooldown = dQuick["cooldown"] + random.uniform(1.5, 2.5)
-            dAttack = dQuick["name"]
+            dAttack = dQuick
+            if dAttack["type"] in dPokemon["types"]:
+                dStab = 1.2
+            for aType in aPokemon["types"]:
+                dEffectiveness *= effectivenessMap[aTE[dAttack["type"]][aType]]
 
         
         aEnergy += math.ceil(dDamage / 2)
@@ -291,7 +319,7 @@ def simulateGymAttack():
                 "energy" : aEnergy,
                 "cd" : aCooldown,
                 "damage_dealt" : aDamageCounter,
-                "attack" : aAttack
+                "attack" : None if aAttack == None else aAttack["name"]
             },
             "defender" : {
                 "name" : dPokemon["name"],
@@ -299,46 +327,47 @@ def simulateGymAttack():
                 "energy" : dEnergy,
                 "cd" : dCooldown,
                 "damage_dealt" : dDamageCounter,
-                "attack" : dAttack
+                "attack" : None if dAttack == None else dAttack["name"]
             },
         }
 
         snapshots.append(snapshot)
 
         if print_:
-            aStrLength = 40
-            aPokemonStr = "Attacking Pokemon:  %s" % (snapshot["attacker"]["name"], )
-            aHPStr = "HP:                 %03d" % (snapshot["attacker"]["hp"], )
-            aEnergyStr = "Energy:             %03d" % (aEnergy, )
-            aCDStr = "Cooldown:           %1.2f" % (aCooldown, )
-            aDamageStr = "Total damage dealt: %03d" % (aDamageCounter)
-            aAttackStr = "Attack:             %s" % (aAttack) if aAttack != None else ""
-
-            aPokemonTail = " " * (aStrLength - len(aPokemonStr))
-            aHPTail = " " * (aStrLength - len(aHPStr))
-            aEnergyTail = " " * (aStrLength - len(aEnergyStr))
-            aCDTail = " " * (aStrLength - len(aCDStr))
-            aDamageTail = " " * (aStrLength - len(aDamageStr))
-            aAttackTail = " " * (aStrLength - len(aAttackStr))
+            if (print_Only_Attacks and (aAttack != None or dAttack != None)) or not print_Only_Attacks:
+                aStrLength = 48
+                aPokemonStr = "Attacking Pokemon:  %s" % (snapshot["attacker"]["name"], )
+                aHPStr = "HP:                 %03d" % (snapshot["attacker"]["hp"], )
+                aEnergyStr = "Energy:             %03d" % (aEnergy, )
+                aCDStr = "Cooldown:           %1.2f" % (aCooldown, )
+                aDamageStr = "Total damage dealt: %03d" % (aDamageCounter)
+                aAttackStr = "Attack:             %s x%1.2f x%1.2f" % (aAttack["name"], aStab, aEffectiveness) if aAttack != None else ""
+                
+                aPokemonTail = " " * (aStrLength - len(aPokemonStr))
+                aHPTail = " " * (aStrLength - len(aHPStr))
+                aEnergyTail = " " * (aStrLength - len(aEnergyStr))
+                aCDTail = " " * (aStrLength - len(aCDStr))
+                aDamageTail = " " * (aStrLength - len(aDamageStr))
+                aAttackTail = " " * (aStrLength - len(aAttackStr))
             
-            dPokemonStr = "Defending Pokemon:  %s" % (snapshot["defender"]["name"], )
-            dHPStr = "HP:                 %03d" % (snapshot["defender"]["hp"], )
-            dEnergyStr = "Energy:             %03d" % (dEnergy, )
-            dCDStr = "Cooldown:           %1.2f" % (dCooldown, )
-            dDamageStr = "Total damage dealt: %03d" % (dDamageCounter)
-            dAttackStr = "Attack:             %s" % (dAttack) if dAttack != None else ""
-            
-            print "-" * 80
-            print "Time Elapsed: {0}".format(elapsed)
-            print "-" * 80
-            print "%s%s%s" % (aPokemonStr, aPokemonTail, dPokemonStr)
-            print "-" * 80
-            print "%s%s%s" % (aHPStr, aHPTail, dHPStr)
-            print "%s%s%s" % (aEnergyStr, aEnergyTail, dEnergyStr)
-            print "%s%s%s" % (aCDStr, aCDTail, dCDStr)
-            print "%s%s%s" % (aDamageStr, aDamageTail, dDamageStr)
-            print "%s%s%s" % (aAttackStr, aAttackTail, dAttackStr)
-            print ""
+                dPokemonStr = "Defending Pokemon:  %s" % (snapshot["defender"]["name"], )
+                dHPStr = "HP:                 %03d" % (snapshot["defender"]["hp"], )
+                dEnergyStr = "Energy:             %03d" % (dEnergy, )
+                dCDStr = "Cooldown:           %1.2f" % (dCooldown, )
+                dDamageStr = "Total damage dealt: %03d" % (dDamageCounter)
+                dAttackStr = "Attack:             %s x%1.2f x%1.2f" % (dAttack["name"], dStab, dEffectiveness) if dAttack != None else ""
+                
+                print "-" * (2 * aStrLength)
+                print "Time Elapsed: {0}".format(elapsed)
+                print "-" * (2 * aStrLength)
+                print "%s%s%s" % (aPokemonStr, aPokemonTail, dPokemonStr)
+                print "-" * (2 * aStrLength)
+                print "%s%s%s" % (aHPStr, aHPTail, dHPStr)
+                print "%s%s%s" % (aEnergyStr, aEnergyTail, dEnergyStr)
+                print "%s%s%s" % (aCDStr, aCDTail, dCDStr)
+                print "%s%s%s" % (aDamageStr, aDamageTail, dDamageStr)
+                print "%s%s%s" % (aAttackStr, aAttackTail, dAttackStr)
+                print ""
 
         elapsed += delta
 
@@ -352,9 +381,9 @@ def simulateGymAttack():
 
         
 # Attacking Pokemon
-attack_pokemon = "Raikou"
+attack_pokemon = "Jolteon"
 attack_quick = "Thunder Shock"
-attack_charge = "Wild Charge"
+attack_charge = "Discharge"
 attack_ivs = {
     "attack" : 15,
     "defense" : 15,
@@ -377,6 +406,7 @@ defense_cpm = 1
 time = 60
 delta = 0.01
 print_ = False
+print_Only_Attacks = False
 numOfTrials = 1000
     
 def main(argv):
@@ -398,8 +428,8 @@ def main(argv):
         results[3][i] = result[3]
     print "%s vs %s" % (attack_pokemon, defense_pokemon, )
     print "Num of trials: %d" % (numOfTrials, )
-    print "Win Rate: %1.2f" % (float(results[0]) / float(numOfTrials), )
-    print "Loss Rate: %1.2f" % (float(results[1]) / float(numOfTrials), )
+    print "Attacker Win Rate: %1.2f" % (float(results[0]) / float(numOfTrials), )
+    print "Attacker Loss Rate: %1.2f" % (float(results[1]) / float(numOfTrials), )
     print "Draw Rate: %1.2f" % (float(results[2]) / float(numOfTrials), )
 
 if __name__=='__main__':
